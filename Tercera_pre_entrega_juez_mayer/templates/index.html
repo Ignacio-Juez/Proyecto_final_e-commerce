@@ -1,0 +1,118 @@
+<!-- templates/index.html (como plantilla base) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>{% block title %}Memorial Books{% endblock %}</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
+    <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+    
+    <style>
+        .content-section {
+            margin-top: 300px; /* Ajusta este valor según tus necesidades */
+        }
+    </style>
+</head>
+<body class="main-layout home_page">
+    <div class="loader_bg">
+        <div class="loader"><img src="{% static 'images/loading.gif' %}" alt="#" /></div>
+    </div>
+    <header>
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col logo_section">
+                        <div class="full">
+                            <div class="center-desk">
+                                <div class="logo"> 
+                                    <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="#"></a> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="menu-area">
+                            <div class="limit-box">
+                                <nav class="main-menu">
+                                    <ul class="menu-area-main">
+                                        <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                                        <li><a href="{% url 'about' %}">About us</a></li>
+                                        <li><a href="{% url 'buscar_libro' %}">Buscar Libros</a></li>
+                                        <li><a href="{% url 'agregar_libro' %}">Agregar Libro</a></li>
+                                        <li><a href="{% url 'contact' %}">Contact us</a></li>
+                                        <li class="mean-last"><a href="#"><img src="{% static 'images/search_icon.png' %}" alt="#" /></a></li>
+                                        <li class="mean-last"><a href="#"><img src="{% static 'images/top-icon.png' %}" alt="#" /></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección para insertar contenido específico -->
+    {% block content %}
+    <section class="slider_section" style="margin-top: 100px;">
+        <div id="myCarousel" class="carousel slide banner-main" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="first-slide" src="{% static 'images/banner.jpg' %}" alt="First slide">
+                    <div class="container">
+                        <div class="carousel-caption relative">
+                            <h1>The Best Libraries That<br> Every Book Lover Must<br> Visit!</h1>
+                            <p>Adipiscing elit, sed do eiusmod tempor incididunt ut<br> labore et dolore magna aliqua. Ut enim ad minim<br> veniam, quis nostrud exercitation </p>
+                            <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
+                            <ul class="locat_icon">
+                                <li> <a href="#"><img src="{% static 'icon/facebook.png' %}"></a></li>
+                                <li> <a href="#"><img src="{% static 'icon/Twitter.png' %}"></a></li>
+                                <li> <a href="#"><img src="{% static 'icon/linkedin.png' %}"></a></li>
+                                <li> <a href="#"><img src="{% static 'icon/instagram.png' %}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <ul class="sociel">
+                            <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12">
+                        <p>Copyright 2023 All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+    <script src="{% static 'js/plugin.js' %}"></script>
+    <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.js' %}"></script>
+</body>
+</html>

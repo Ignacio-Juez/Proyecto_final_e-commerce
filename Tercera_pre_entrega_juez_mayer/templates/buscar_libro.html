@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+
+{% block title %}Buscar Libro{% endblock %}
+
+{% block content %}
+<section class="inner_page_section" style="padding-top: 200px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Buscar Libro</h2>
+                <form method="GET" action="{% url 'buscar_libro' %}">
+                    <div class="form-group">
+                        <label for="titulo">Título:</label>
+                        <input type="text" id="titulo" name="titulo" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+
+                {% if busqueda_realizada %}
+                    {% if resultados %}
+                    <h3>Resultados de la búsqueda:</h3>
+                    <ul>
+                        {% for libro in resultados %}
+                            <li>{{ libro.titulo }} - {{ libro.autor.nombre }}</li>  <!-- Asegúrate de que tengas acceso a autor en el modelo -->
+                        {% empty %}
+                            <li>No se encontraron libros.</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <h3>No se encontraron libros.</h3>
+                {% endif %}
+            {% else %}
+                <h3>No se han realizado busquedas aún.</h3>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block title %}Agregar Libro{% endblock %}
+
+{% block content %}
+<section class="inner_page_section" style="padding-top: 200px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Agregar Libro</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {% if libro_form.errors or autor_form.errors or editorial_form.errors %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {%for field, errors in libro_form.errors.items %}
+                                    {%for error in errors %}
+                                        <li>{{ field }}: {{error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                                {% for field, errors in autor_form.errors.items %}
+                                        {%for error in errors %}
+                                            <li>{{ field }}: {{error }}</li>
+                                        {% endfor %}
+                                {% endfor %}
+                                {% for field, errors in editorial_form.errors.items %}
+                                    {% for error in errors %}
+                                        <li>{{ field }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <fieldset>
+                        <legend>Datos del Libro</legend>
+                        {{ libro_form.titulo.label_tag }}: {{ libro_form.titulo }} <br>
+                        {{ libro_form.isbn.label_tag }}: {{ libro_form.isbn }} <br>
+                        {{ libro_form.fecha_publicacion.label_tag }}: {{ libro_form.fecha_publicacion }} <br>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Datos del Autor</legend>
+                        {{ autor_form.nombre.label_tag }}: {{ autor_form.nombre }} <br>
+                        {{ autor_form.apellido.label_tag }}: {{ autor_form.apellido }} <br>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Datos de la Editorial</legend>
+                        {{ editorial_form.nombre.label_tag }}: {{ editorial_form.nombre }} <br>
+                    </fieldset>
+
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </form>
+                <br>
+                <a href="{% url 'index' %}" class="btn btn-secondary">Volver a la página principal</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

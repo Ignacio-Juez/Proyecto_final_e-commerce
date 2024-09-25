@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+{% block title %}About Us - Memorial Books{% endblock %}
+
+{% block content %}
+<div class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="aboutheading">
+                    <h2>About <strong class="black">Us</strong></h2>
+                    <span>We are a dedicated team of book lovers...</span>
+                </div>
+            </div>
+        </div>
+        <div class="row border">
+            <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
+                <div class="about-box">
+                    <p>We provide a vast collection of books... </p>
+                    <a href="javascript:void(0)">Read More <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
+                <div class="about-box">
+                    <figure><img src="{% static 'images/about.jpg' %}" alt="img" /></figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
