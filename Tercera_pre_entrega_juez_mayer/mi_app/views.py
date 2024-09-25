@@ -1,4 +1,3 @@
-# mi_app/views.py
 from django.shortcuts import render, redirect
 from .forms import BusquedaLibroForm
 from .forms import LibroForm, AutorForm, EditorialForm

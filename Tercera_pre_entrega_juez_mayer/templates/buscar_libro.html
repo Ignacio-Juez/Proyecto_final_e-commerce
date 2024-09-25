@@ -21,7 +21,7 @@
                     <h3>Resultados de la búsqueda:</h3>
                     <ul>
                         {% for libro in resultados %}
-                            <li>{{ libro.titulo }} - {{ libro.autor.nombre }}</li>  <!-- Asegúrate de que tengas acceso a autor en el modelo -->
+                            <li>{{ libro.titulo }} - {{ libro.autor.nombre }}</li>  
                         {% empty %}
                             <li>No se encontraron libros.</li>
                         {% endfor %}
