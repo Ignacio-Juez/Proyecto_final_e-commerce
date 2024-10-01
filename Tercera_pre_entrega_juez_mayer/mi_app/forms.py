@@ -4,7 +4,7 @@ from .models import Libro, Autor, Editorial
 class LibroForm(forms.ModelForm):
     class Meta:
         model = Libro
-        fields = ['titulo', 'isbn', 'fecha_publicacion']
+        fields = ['titulo', 'isbn', 'fecha_publicacion', 'stock']
         widget = {
             'fecha_publicacion': forms.DateInput(attrs={'type': 'date'}),
         }

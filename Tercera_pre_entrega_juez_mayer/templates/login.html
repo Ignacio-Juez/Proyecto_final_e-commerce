@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<section class="inner_page_section" style="padding-top: 150px;"></section>
+<h2>Iniciar Sesión</h2>
+<form method ="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Iniciar Sesión</button>
+</form>
+{% endblock %}
