@@ -1,31 +1,71 @@
 {% extends 'index.html' %}
+{% load static %}
 
-{% block title %}About Us - Memorial Books{% endblock %}
+{% block title %}Acerca de Ignacio Nahuel Juez Mayer{% endblock %}
 
 {% block content %}
-<div class="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 offset-md-1">
-                <div class="aboutheading">
-                    <h2>About <strong class="black">Us</strong></h2>
-                    <span>We are a dedicated team of book lovers...</span>
+<div class="page-wrapper" style="display: flex; flex-direction: column; min-height: 100vh;">
+    <!-- Aseguramos un padding-top amplio para evitar que el contenido sea cubierto por el navbar -->
+    <section class="inner_page_section" style="padding-top: 150px; flex-grow: 1;">
+        <div class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="aboutheading" style="position: relative;">
+                            <!-- Capa oscura detrás del texto -->
+                            <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+                                <h2 style="color: #ffffff; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);">Acerca de 
+                                    <strong class="orange" style="color: #ffffff;">Ignacio Nahuel Juez Mayer</strong>
+                                </h2>
+                                <span style="color: #ffffff; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);">
+                                    Programador entusiasta de la tecnología y comprometido con el aprendizaje continuo.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border">
+                    <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
+                        <div class="about-box" style="position: relative;">
+                            <!-- Capa oscura detrás del texto -->
+                            <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+                                <h2 style="color: #ffffff; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);">Conoce a 
+                                    <strong class="blue" style="color: #ffffff;">Ignacio Nahuel Juez Mayer</strong>
+                                </h2>
+                                <p style="color: #ffffff; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);">
+                                    ¡Hola! Soy Ignacio Juez, un desarrollador con experiencia en Python y Django. Actualmente estoy trabajando en aplicaciones web avanzadas y enfocándome en una carrera en Ciencia de Datos. Mi objetivo es crear código eficiente y claro que resuelva problemas reales de manera lógica. En este momento, estoy mejorando mis habilidades de desarrollo backend creando una web para gestionar las cuotas de una organización. Cuando esté terminada, ciertas funcionalidades podrán incluirse en este sitio web.
+                                </p>
+                                <ul style="color: #ffffff; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);">
+                                    <li><strong>Habilidades:</strong> Python, Django, SQL, HTML, CSS</li>
+                                    <li><strong>Intereses:</strong> Ciencia de Datos, Desarrollo Web, Automatización</li>
+                                    <li><strong>Buscando:</strong> Oportunidades en desarrollo de software, proyectos de datos y entornos colaborativos.</li>
+                                </ul>
+                                <a href="javascript:void(0)" style="background-color: #81256c; color: #fff;">Saber Más <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
+                        <div class="about-box">
+                            <figure>
+                                <img src="{% static 'images/ignacio_profile.jpg' %}" alt="Ignacio Nahuel Juez Mayer" />
+                            </figure>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row border">
-            <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
-                <div class="about-box">
-                    <p>We provide a vast collection of books... </p>
-                    <a href="javascript:void(0)">Read More <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
-                <div class="about-box">
-                    <figure><img src="{}" alt="img" /></figure>
+    </section>
+    
+    <!-- Footer en su posición normal -->
+    <footer style="position: relative; width: 100%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Añade aquí el contenido del footer -->
+                    
                 </div>
             </div>
         </div>
-    </div>
+    </footer>
 </div>
 {% endblock %}

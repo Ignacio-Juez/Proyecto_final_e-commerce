@@ -44,11 +44,32 @@
                             <div class="limit-box">
                                 <nav class="main-menu">
                                     <ul class="menu-area-main">
-                                        <li class="active"><a href="{% url 'index' %}">Home</a></li>
-                                        <li><a href="{% url 'about' %}">About us</a></li>
-                                        <li><a href="{% url 'buscar_libro' %}">Buscar Libros</a></li>
-                                        <li><a href="{% url 'agregar_libro' %}">Agregar Libro</a></li>
-                                        <li><a href="{% url 'contact' %}">Contact us</a></li>
+                                        <li class="active"><a href="{% url 'index' %}">Inicio</a></li>
+                                        <li><a href="{% url 'about' %}">Acerca de mí</a></li>
+                                        
+                                        {% if user.is_authenticated and is_employee %}
+                                            <li><a href="{% url 'agregar_libro' %}">Agregar Libro</a></li>
+                                        {% endif %}
+                                        
+                                        {% if user.is_authenticated and is_employee %}
+                                         <li><a href="{% url 'gestionar_libros' %}">Gestionar Libros</a></li>
+                                        {% endif %}
+
+                                        <li><a href="{% url 'contact' %}">Contáctame</a></li>
+                                        {% if user.is_authenticated %}
+                                            <li>
+                                                <form method="POST" action="{% url 'logout' %}">
+                                                    {% csrf_token %}
+                                                    <a href="#" onclick="this.closest('form').submit();" style="text-decoration:none; color:white;">
+                                                        Cerrar Sesión
+                                                    </a>
+                                                </form>
+                                            </li>  
+                                        {% else %}
+                                            <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>  
+                                            <li><a href="{% url 'register' %}">Registrarse</a></li> 
+                                        {% endif %}
+
                                         <li class="mean-last"><a href="{% url 'buscar_libro' %}"><img src="{% static 'images/search_icon.png' %}" alt="#" /></a></li>
                                         <li class="mean-last"><a href="{% url 'register' %}"><img src="{% static 'images/top-icon.png' %}" alt="#" /></a></li>
                                     </ul>
@@ -70,9 +91,9 @@
                     <img class="first-slide" src="{% static 'images/banner.jpg' %}" alt="First slide">
                     <div class="container">
                         <div class="carousel-caption relative">
-                            <h1>The Best Libraries That<br> Every Book Lover Must<br> Visit!</h1>
-                            <p>Adipiscing elit, sed do eiusmod tempor incididunt ut<br> labore et dolore magna aliqua. Ut enim ad minim<br> veniam, quis nostrud exercitation </p>
-                            <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
+                            <h1>Los Mejores Libros Que<br> Todo Buen Lector Busca<br> Están acá!</h1>
+                            <p>Descubrí un mundo de historias, conocimiento y aventuras<br> Encontrá el libro perfecto para cada momento<br> ¡Tu próxima gran lectura te espera! </p>
+                            <div class="button_section"> <a class="main_bt" href="#">Leer Más</a>  </div>
                             <ul class="locat_icon">
                                 <li> <a href="#"><img src="{% static 'icon/facebook.png' %}"></a></li>
                                 <li> <a href="#"><img src="{% static 'icon/Twitter.png' %}"></a></li>
@@ -100,7 +121,7 @@
                         </ul>
                     </div>
                     <div class="col-sm-12">
-                        <p>Copyright 2023 All Rights Reserved.</p>
+                        <p>Copyright 2024 All Rights Reserved.</p>
                     </div>
                 </div>
             </div>

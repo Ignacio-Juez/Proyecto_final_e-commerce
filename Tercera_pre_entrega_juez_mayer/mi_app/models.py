@@ -9,6 +9,7 @@ class Libro(models.Model):
     isbn = models.CharField(max_length=13, unique=True, null=False, blank=False, default="0000000000000")
     fecha_publicacion = models.DateField(null=True, blank=True)
     stock = models.PositiveIntegerField(default=0)
+    imagen_url = models.URLField(max_length=500, null=True, blank=True)
 
     def incrementar_stock(self, cantidad):
         self.stock += cantidad

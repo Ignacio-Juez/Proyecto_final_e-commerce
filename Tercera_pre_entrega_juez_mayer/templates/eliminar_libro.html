@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block title %}Ver Libros{% endblock %}
+
+{% block content %}
+<section class="inner_page_section" style="padding-top: 200px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Eliminar Libros</h2>
+                <form method="GET" action="{% url 'ver_libros' %}">
+                    <div class="form-group">
+                        <label for="titulo">Título:</label>
+                        <input type="text" id="titulo" name="titulo" class="form-control">
+                    </div>
+                    {% for l in libros %}
+
+                    <li>{{l}}</li>
+                    <button>
+                        <a href="{% url 'eliminar_libro' l.nombre %}"> Eliminar</a>
+                    </button>
+                    {% endfor %}
+                    <a href="libros">Agregar otro libro</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+</body>
+</html>

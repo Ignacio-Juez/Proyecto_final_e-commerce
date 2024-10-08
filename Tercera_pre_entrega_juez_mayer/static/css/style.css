@@ -1444,19 +1444,24 @@ ul.locat_icon li a{
 
 
 
- .about {
-    
+ ul.locat_icon li a{
+ margin-bottom: 23px;
+}
+
+.about {
      background: url(../images/about-bg.jpg);
      background-size: 100% 100%;
      background-repeat: no-repeat;
      background-position: center center;
      padding: 90px 0px;
 }
- .aboutheading {
+
+.aboutheading {
     text-align: center;
     padding-bottom: 50px;
 }
- .aboutheading h2 {
+
+.aboutheading h2 {
      padding: 0px 0px 20px 0px;
      font-size: 50px;
      font-weight: bold;
@@ -1465,28 +1470,30 @@ ul.locat_icon li a{
 }
 
 .aboutheading span {
-     color:#141012; 
+     color: #333333; 
      font-size: 17px;
      line-height: 32px;
 }
 
-.black {color: #141012 }
-.about .about-box {
+.black {color: #333333;} 
 
-    
-
+.about-box {
+    background-color: rgba(0, 0, 0, 0.7);  /* Un fondo oscuro semitransparente */
+    color: #fff;  /* Color blanco para el texto */
+    padding: 20px;
 }
- .about .about-box figure {
+
+.about .about-box figure {
     margin: 0px;
-     
 }
- .about .about-box p {
+
+.about .about-box p {
     font-size: 17px;
-     line-height: 32px;
-     color: #141012;
-     
+    line-height: 32px;
+    color: #333333; 
 }
- .about .about-box a{
+
+.about .about-box a {
      width: 200px;
      font-size: 17px;
      padding: 20px 0px;
@@ -1498,50 +1505,60 @@ ul.locat_icon li a{
      text-align: center;
      margin-top: 30px;
 }
- .about .about-box a:hover {
+
+.about .about-box a:hover {
     color: #fff;
-     background-color: #81256c;
+    background-color: #81256c;
 }
 
-.border {border-radius: 30px; border: #81256c solid 2px !important; padding: 40px 40px;} 
+.border {
+    border-radius: 30px;
+    border: #81256c solid 2px !important;
+    padding: 40px 40px;
+}
 
- .Library {
+.Library {
      background-color: #fff;
      padding: 90px 0px;
 }
- .Library .titlepage {
+
+.Library .titlepage {
      text-align: center;
      padding-bottom: 54px;
 }
- .Library .titlepage h2 {
+
+.Library .titlepage h2 {
      padding: 0px 0px 20px 0px;
      font-size: 50px;
      font-weight: bold;
      color: #b32137;
      line-height: 50px;
 }
- 
- .Library .titlepage span {
-    color:#141012; 
+
+.Library .titlepage span {
+     color: #333333; /* Cambiado de #141012 a #333333 */
      font-size: 17px;
      line-height: 32px;
 }
 
-.bg {background-color: #81256c;}
+.bg {
+    background-color: #81256c;
+}
 
 .Library-box {
     padding: 20px 0px 10px 0px;
 }
-.bg .Library-box figure {margin: 0;}
+
+.bg .Library-box figure {
+    margin: 0;
+}
 
 .read-more {
     justify-content: center;
     display: flex;
 }
 
-
-
-.read-more a{
+.read-more a {
      width: 200px;
      font-size: 17px;
      padding: 20px 0px;
@@ -1551,10 +1568,143 @@ ul.locat_icon li a{
      line-height: 20px;
      border-radius: 30px;
      text-align: center;
-     margin-top: 30px;}
+     margin-top: 30px;
+}
 
-.read-more a:hover {background-color:  #000;}
+.read-more a:hover {
+    background-color: #000;
+}
 
+ul.locat_icon li a{
+    margin-bottom: 23px;
+   }
+   
+   .about {
+        background: url(../images/about-bg.jpg);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        padding: 90px 0px;
+   }
+   
+   .aboutheading {
+       text-align: center;
+       padding-bottom: 50px;
+   }
+   
+   .aboutheading h2 {
+        padding: 0px 0px 20px 0px;
+        font-size: 50px;
+        font-weight: bold;
+        color: #b32137;
+        line-height: 50px;
+   }
+   
+   .aboutheading span {
+        color: #333333; /* Cambiado de #141012 a #333333 */
+        font-size: 17px;
+        line-height: 32px;
+   }
+   
+   .black {color: #333333;} /* Cambiado de #141012 a #333333 */
+   
+   .about-box {
+    background-color: rgba(0, 0, 0, 0.7);  /* Un fondo oscuro semitransparente */
+    color: #fff;  /* Color blanco para el texto */
+    padding: 20px;
+}
+   .about .about-box figure {
+       margin: 0px;
+   }
+   
+   .about .about-box p {
+       font-size: 17px;
+       line-height: 32px;
+       color: #141012; /* Cambiado de #141012 a #333333 */
+   }
+   
+   .about .about-box a {
+        width: 200px;
+        font-size: 17px;
+        padding: 20px 0px;
+        background-color: #81256c;
+        color: #ff1010;
+        display: inline-block;
+        line-height: 20px;
+        border-radius: 30px;
+        text-align: center;
+        margin-top: 30px;
+   }
+   
+   .about .about-box a:hover {
+       color: #ff0000;
+       background-color: #81256c;
+   }
+   
+   .border {
+       border-radius: 30px;
+       border: #81256c solid 2px !important;
+       padding: 40px 40px;
+   }
+   
+   .Library {
+        background-color: #f80909;
+        padding: 90px 0px;
+   }
+   
+   .Library .titlepage {
+        text-align: center;
+        padding-bottom: 54px;
+   }
+   
+   .Library .titlepage h2 {
+        padding: 0px 0px 20px 0px;
+        font-size: 50px;
+        font-weight: bold;
+        color: #b32137;
+        line-height: 50px;
+   }
+   
+   .Library .titlepage span {
+        color: #333333; /* Cambiado de #141012 a #333333 */
+        font-size: 17px;
+        line-height: 32px;
+   }
+   
+   .bg {
+       background-color: #81256c;
+   }
+   
+   .Library-box {
+       padding: 20px 0px 10px 0px;
+   }
+   
+   .bg .Library-box figure {
+       margin: 0;
+   }
+   
+   .read-more {
+       justify-content: center;
+       display: flex;
+   }
+   
+   .read-more a {
+        width: 200px;
+        font-size: 17px;
+        padding: 20px 0px;
+        background-color: #81256c;
+        color: #fff;
+        display: inline-block;
+        line-height: 20px;
+        border-radius: 30px;
+        text-align: center;
+        margin-top: 30px;
+   }
+   
+   .read-more a:hover {
+       background-color: #000;
+   }
+   
 
 .box {display: flex; align-items: center; flex-wrap: wrap; text-align: center;}
 .Books {
@@ -1791,8 +1941,103 @@ margin-top: 90px;
 .contact-page .form-control  { margin-bottom: 20px;} 
  
 /** slider arrow **/
- 
+/* Custom layout for login page */
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Esto centra el contenido verticalmente */
+}
+
+.login-container {
+    width: 100%;
+    max-width: 1200px; /* Aumentamos el tamaño máximo */
+    background-color: #ffffff;
+    padding: 80px; /* Aumentamos el padding para darle más espacio */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.login-container h2 {
+    font-size: 120px; /* Aumenta el tamaño del título */
+    margin-bottom: 20px;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button {
+    background-color: #81256c;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #b32137; /* Cambia el color del botón al hacer hover */
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 
+/* Elimina los bordes negros ajustando el container para que ocupe todo el ancho */
+.container {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
 
+/* Ajusta el padding superior para que no se solape con el navbar */
+.inner_page_section {
+    padding-top: 150px; /* Puedes ajustar este valor según necesites */
+}
+
+/* Asegúrate de que el footer esté al final de la página */
+footer {
+    background-color: #81256c; /* Color de fondo del footer */
+    color: #fff; /* Texto blanco para mayor contraste */
+    padding: 20px 0; /* Espaciado dentro del footer */
+    text-align: center; /* Centrar el texto del footer */
+    width: 100%;
+}
+/* Añadir estilos para la sección de las tarjetas */
+.libros-section {
+    margin-top: 40px;  /* Para separar las tarjetas del formulario */
+}
+
+/* Para alinear y espaciar las tarjetas */
+.libros-section .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;  /* Distribuye las tarjetas con espacio alrededor */
+    align-items: stretch;  /* Asegura que todas las tarjetas tengan la misma altura */
+    margin-right: 40px;
+    margin-left: 40px;
+    align-content: center;  /* Centra el contenido dentro de la fila */
+}
+
+.libros-section .card {
+    margin-bottom: 20px;  /* Añade espacio debajo de cada tarjeta */
+    flex: 1 1 calc(33.333% - 40px);  /* Hace que cada tarjeta ocupe un tercio del espacio, menos los márgenes */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añadir una sombra suave para efecto visual */
+    border-radius: 8px;  /* Opcional: hace que las esquinas de las tarjetas sean redondeadas */
+}
 

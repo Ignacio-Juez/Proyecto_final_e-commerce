@@ -4,9 +4,8 @@
 {% block content %}
 <section class="inner_page_section" style="padding-top: 150px;"></section>
 <h2>Cerrar Sesión</h2>
-<form method ="post">
+<form method ="POST" action ="{% url 'logout' %}">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Cerrar</button>
+    <button type="submit">Cerrar Sesión</button>
 </form>
 {% endblock %}

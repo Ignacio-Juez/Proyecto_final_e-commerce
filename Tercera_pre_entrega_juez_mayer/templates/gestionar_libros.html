@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Gestionar Libros{% endblock %}
+
+{% block content %}
+<section class="inner_page_section" style="padding-top: 200px;">
+    <div class="container">
+        <h2>Gestionar Libros</h2>
+
+        {% if libros %}
+            <ul class="list-group">
+                {% for libro in libros %}
+                    <li class="list-group-item">
+                        <strong>{{ libro.titulo }}</strong> - ISBN: {{ libro.isbn }}
+                        <br>
+                        <a href="{% url 'editar_libro' libro.id %}" class="btn btn-primary">Editar</a>
+                        <form action="{% url 'eliminar_libro' libro.id %}" method="POST" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro que deseas eliminar este libro?')">Eliminar</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay libros disponibles.</p>
+        {% endif %}
+    </div>
+<style>
+        footer {
+            margin-top: 500px; 
+        }
+</style>
+</section>
+{% endblock %}

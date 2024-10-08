@@ -1,9 +1,9 @@
 {% extends 'index.html' %}
+{% load static %}
 
 {% block title %}Buscar Libro{% endblock %}
-
 {% block content %}
-<section class="inner_page_section" style="padding-top: 200px;">
+<section class="inner_page_section" style="padding-top: 300px;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -11,31 +11,40 @@
                 <form method="GET" action="{% url 'buscar_libro' %}">
                     <div class="form-group">
                         <label for="titulo">Título:</label>
-                        <input type="text" id="titulo" name="titulo" class="form-control">
+                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Buscar por título">
                     </div>
                     <button type="submit" class="btn btn-primary">Buscar</button>
                 </form>
 
-                {% if busqueda_realizada %}
-                    {% if resultados %}
-                    <h3>Resultados de la búsqueda:</h3>
-                    <ul>
-                        {% for libro in resultados %}
-                            <li>{{ libro.titulo }} - {{ libro.autor.nombre }}</li>  
-                        {% empty %}
-                            <li>No se encontraron libros.</li>
-                        {% endfor %}
-                    </ul>
+                {% if resultados %}
+                    <h3>{% if busqueda_realizada %}Resultados de la búsqueda:{% else %}Todos los libros disponibles:{% endif %}</h3>
+                    
+                    <!-- Nueva sección para organizar las tarjetas de los libros -->
+                    <section class="libros-section">
+                        <div class="row">
+                            {% for libro in resultados %}
+                                <div class="col-md-4">
+                                    <div class="card" style="width: 18rem;">
+                                        {% if libro.imagen_url %}
+                                            <img src="{{ libro.imagen_url }}" class="card-img-top" alt="{{ libro.titulo }}">
+                                        {% else %}
+                                            <img src="{% static 'images/default_image.jpg' %}" class="card-img-top" alt="Imagen no disponible">
+                                        {% endif %}
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ libro.titulo }}</h5>
+                                            <p class="card-text">{{ libro.autor.nombre }}</p>
+                                            <a href="{% url 'detalles_libro' libro.id %}" class="btn btn-primary">Detalles</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </section>
                 {% else %}
                     <h3>No se encontraron libros.</h3>
                 {% endif %}
-            {% else %}
-                <h3>No se han realizado busquedas aún.</h3>
-            {% endif %}
             </div>
         </div>
     </div>
 </section>
 {% endblock %}
-</body>
-</html>

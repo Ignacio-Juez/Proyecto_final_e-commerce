@@ -15,15 +15,15 @@
                     {% if libro_form.errors or autor_form.errors or editorial_form.errors %}
                         <div class="alert alert-danger">
                             <ul>
-                                {%for field, errors in libro_form.errors.items %}
-                                    {%for error in errors %}
-                                        <li>{{ field }}: {{error }}</li>
+                                {% for field, errors in libro_form.errors.items %}
+                                    {% for error in errors %}
+                                        <li>{{ field }}: {{ error }}</li>
                                     {% endfor %}
                                 {% endfor %}
                                 {% for field, errors in autor_form.errors.items %}
-                                        {%for error in errors %}
-                                            <li>{{ field }}: {{error }}</li>
-                                        {% endfor %}
+                                    {% for error in errors %}
+                                        <li>{{ field }}: {{ error }}</li>
+                                    {% endfor %}
                                 {% endfor %}
                                 {% for field, errors in editorial_form.errors.items %}
                                     {% for error in errors %}
