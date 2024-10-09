@@ -2,13 +2,11 @@
 {% load static %}
 {% block title %}Detalles del Libro{% endblock %}
 {% block content %}
-<section class="inner_page_section" style="padding-top: 100px;">
+<section class="inner_page_section" style="padding-top: 600px;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Detalles del Libro</h2>
                 <div class="card" style="width: 18rem;">
-                    <!-- Mostrar la imagen del libro -->
                     {% if libro.imagen_url %}
                         <img src="{{ libro.imagen_url }}" class="card-img-top" alt="{{ libro.titulo }}">
                     {% else %}
@@ -18,6 +16,7 @@
                         <h5 class="card-title">{{ libro.titulo }}</h5>
                         <p class="card-text"><strong>ISBN:</strong> {{ libro.isbn }}</p>
                         <p class="card-text"><strong>Fecha de Publicación:</strong> {{ libro.fecha_publicacion }}</p>
+                        <p class="card-text"><strong>Precio:</strong> {{ libro.precio }}</p>
                         <p class="card-text"><strong>Stock Disponible:</strong> {{ libro.stock }}</p>
                         <p class="card-text"><strong>Autor:</strong> {{ libro.autor.nombre }} {{ libro.autor.apellido }}</p>
                         <p class="card-text"><strong>Editorial:</strong> {{ libro.editorial.nombre }}</p>
@@ -28,4 +27,9 @@
         </div>
     </div>
 </section>
+<style>
+    footer {
+        margin-top: 400px; 
+    }
+</style>
 {% endblock %}

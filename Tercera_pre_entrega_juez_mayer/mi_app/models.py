@@ -10,7 +10,8 @@ class Libro(models.Model):
     fecha_publicacion = models.DateField(null=True, blank=True)
     stock = models.PositiveIntegerField(default=0)
     imagen_url = models.URLField(max_length=500, null=True, blank=True)
-
+    precio = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    
     def incrementar_stock(self, cantidad):
         self.stock += cantidad
         self.save()

@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-from .forms import UserRegisterForm, UserProfileForm
+from .forms import UserRegisterForm, UserProfileForm,  CustomPasswordChangeForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 
 def register(request):
      
@@ -59,13 +59,21 @@ def custom_logout(request):
 @login_required
 def edit_profile(request):
     user = request.user
+
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            return redirect('index')  # Redirige a la página que desees después de guardar
+        profile_form = UserProfileForm(request.POST, instance=user)
+        password_form = CustomPasswordChangeForm(user=user, data=request.POST)  
+        if profile_form.is_valid() and password_form.is_valid():
+            profile_form.save()
+            password_form.save()
+            update_session_auth_hash(request, password_form.user)  
+            return redirect('index')  
+
     else:
-        form = UserProfileForm(instance=user)  # Rellena el formulario con la información actual del usuario
+        profile_form = UserProfileForm(instance=user)
+        password_form = CustomPasswordChangeForm(user=user)  
 
-    return render(request, 'edit_profile.html', {'form': form})
-
+    return render(request, 'edit_profile.html', {
+        'form': profile_form,
+        'password_form': password_form,  
+    })

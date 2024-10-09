@@ -8,16 +8,16 @@ class LibroForm(forms.ModelForm):
     
     class Meta:
         model = Libro
-        fields = ['titulo', 'isbn', 'fecha_publicacion', 'stock', 'imagen_url', 'autor_nombre', 'autor_apellido', 'editorial_nombre']
+        fields = ['titulo', 'isbn', 'fecha_publicacion', 'stock', 'imagen_url', 'autor_nombre', 'autor_apellido', 'editorial_nombre', 'precio']
         widgets = {
             'fecha_publicacion': forms.DateInput(attrs={'type': 'date'}),
+            'precio': forms.NumberInput(attrs={'step': '0.01'}),
         }
     
     def __init__(self, *args, **kwargs):
-        # Llama al constructor de la clase padre
         super().__init__(*args, **kwargs)
         
-        if self.instance.pk:  # Verifica si ya hay una instancia del libro
+        if self.instance.pk: 
             self.fields['autor_nombre'].initial = self.instance.autor.nombre
             self.fields['autor_apellido'].initial = self.instance.autor.apellido
             self.fields['editorial_nombre'].initial = self.instance.editorial.nombre
@@ -28,11 +28,11 @@ class LibroForm(forms.ModelForm):
         autor_apellido = self.cleaned_data['autor_apellido']
         editorial_nombre = self.cleaned_data['editorial_nombre']
 
-        # Busca o crea el autor
+        
         autor, created = Autor.objects.get_or_create(nombre=autor_nombre, apellido=autor_apellido)
         libro.autor = autor
 
-        # Busca o crea la editorial
+        
         editorial, created = Editorial.objects.get_or_create(nombre=editorial_nombre)
         libro.editorial = editorial
 

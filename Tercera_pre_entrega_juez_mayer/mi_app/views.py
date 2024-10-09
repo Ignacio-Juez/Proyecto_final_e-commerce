@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import BusquedaLibroForm, LibroForm, AutorForm, EditorialForm
+from .forms import LibroForm, AutorForm, EditorialForm
 from .models import Libro, Autor, Editorial
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponseForbidden
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib import messages
@@ -105,12 +104,12 @@ def eliminar_libro(request, libro_id):
 
 
 def buscar_libro(request):
-    titulo = request.GET.get('titulo', '')  # Obtener el título buscado o dejar vacío
+    titulo = request.GET.get('titulo', '')  
     if titulo:
-        resultados = Libro.objects.filter(titulo__icontains=titulo)  # Filtrar por título
+        resultados = Libro.objects.filter(titulo__icontains=titulo)  
         busqueda_realizada = True
     else:
-        resultados = Libro.objects.all()  # Mostrar todos los libros si no hay búsqueda
+        resultados = Libro.objects.all()  
         busqueda_realizada = False
 
     return render(request, 'buscar_libro.html', {
@@ -119,9 +118,7 @@ def buscar_libro(request):
     })
 
 def detalles_libro(request, libro_id):
-    # Obtener el libro o devolver un 404 si no existe
     libro = get_object_or_404(Libro, id=libro_id)
     
-    # Pasar los detalles del libro al template
     return render(request, 'detalles_libro.html', {'libro': libro})
 
