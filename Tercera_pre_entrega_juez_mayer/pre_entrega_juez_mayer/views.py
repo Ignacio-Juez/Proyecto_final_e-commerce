@@ -18,3 +18,5 @@ def buscar_libro(request):
 
     return render(request, 'buscar_libro.html')
 
+def pagina_vacia_view(request):
+    return render(request, 'pagina_vacia.html')

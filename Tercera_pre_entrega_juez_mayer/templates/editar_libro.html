@@ -9,11 +9,47 @@
         <h2>Editar Libro</h2>
         <form method="post">
             {% csrf_token %}
-            {{ libro_form.as_p }}
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                {{ libro_form.titulo }}
+            </div>
+            <div class="form-group">
+                <label for="autor_nombre">Nombre del Autor:</label>
+                {{ libro_form.autor_nombre }}
+            </div>
+            <div class="form-group">
+                <label for="autor_apellido">Apellido del Autor:</label>
+                {{ libro_form.autor_apellido }}
+            </div>
+            <div class="form-group">
+                <label for="editorial_nombre">Nombre de la Editorial:</label>
+                {{ libro_form.editorial_nombre }}
+            </div>
+            <div class="form-group">
+                <label for="isbn">ISBN:</label>
+                {{ libro_form.isbn }}
+            </div>
+            <div class="form-group">
+                <label for="fecha_publicacion">Fecha de Publicación:</label>
+                {{ libro_form.fecha_publicacion }}
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock Disponible:</label>
+                {{ libro_form.stock }}
+            </div>
+            <div class="form-group">
+                <label for="imagen_url">URL de la Imagen:</label>
+                {{ libro_form.imagen_url }}
+            </div>
             <button type="submit" class="btn btn-success">Guardar Cambios</button>
         </form>
         <br>
         <a href="{% url 'gestionar_libros' %}" class="btn btn-secondary">Volver</a>
     </div>
 </section>
+<style>
+    footer {
+        margin-top: 150px; 
+    }
+</style>
 {% endblock %}

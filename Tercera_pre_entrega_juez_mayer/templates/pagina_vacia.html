@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Página Vacía{% endblock %}
+
+{% block content %}
+<section class="inner_page_section" style="padding-top: 500px; text-align: center;">
+    <div class="container">
+        <h2>Página Vacía</h2>
+        <p>Lo sentimos, pero esta página no contiene ningún contenido en este momento.</p>
+        <p>Por favor, vuelve más tarde o navega a otra sección del sitio.</p>
+        <a href="{% url 'index' %}" class="btn btn-primary">Volver a la Página Principal</a>
+    </div>
+</section>
+<style>
+    footer {
+        margin-top: 600px; 
+    }
+</style>
+{% endblock %}

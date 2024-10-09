@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+<section class="inner_page_section" style="padding-top: 250px;">
+    <div class="container">
+        <h2>Editar Perfil</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Guardar Cambios</button>
+        </form>
+        <br>
+        <a href="{% url 'index' %}" class="btn btn-secondary">Volver</a>
+    </div>
+</section>
+<style>
+    footer {
+        margin-top: 350px; 
+    }
+</style>
+{% endblock %}

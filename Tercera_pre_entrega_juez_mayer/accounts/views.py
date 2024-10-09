@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
-from .forms import UserRegisterForm 
+from .forms import UserRegisterForm, UserProfileForm
+from django.contrib.auth.decorators import login_required
+
 def register(request):
      
     if request.method == 'POST':
@@ -53,4 +55,17 @@ def custom_logout(request):
         logout(request)
         return redirect('index')
     return redirect('login')
+
+@login_required
+def edit_profile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  # Redirige a la página que desees después de guardar
+    else:
+        form = UserProfileForm(instance=user)  # Rellena el formulario con la información actual del usuario
+
+    return render(request, 'edit_profile.html', {'form': form})
 
