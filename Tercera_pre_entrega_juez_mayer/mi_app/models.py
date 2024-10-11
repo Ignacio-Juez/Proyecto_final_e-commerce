@@ -44,7 +44,7 @@ class Carrito:
     def __init__(self, carrito_data=None):
         self.articulos = []
         if carrito_data:
-            # Carga los artículos desde el carrito_data si existe
+            
             for item in carrito_data.get('articulos', []):
                 libro = get_object_or_404(Libro, id=item['libro_id'])
                 self.articulos.append({
@@ -57,7 +57,7 @@ class Carrito:
         if libro.stock >= cantidad:
             self.articulos.append({
                 "libro": libro, 
-                "precio": float(libro.precio),  # Convertir a float aquí
+                "precio": float(libro.precio),  
                 "cantidad": cantidad
             })
         
@@ -79,12 +79,12 @@ class Carrito:
         return total
 
     def serializar(self):
-        # Convierte el carrito a un formato serializable
+        
         return {
             "articulos": [
                 {
-                    "libro_id": item["libro"].id,  # Guarda solo el ID del libro
-                    "precio": item["precio"],       # Asegúrate de que el precio sea un float
+                    "libro_id": item["libro"].id,  
+                    "precio": item["precio"],       
                     "cantidad": item["cantidad"],
                 } for item in self.articulos
             ]

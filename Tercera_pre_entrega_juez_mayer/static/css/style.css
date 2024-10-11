@@ -2021,16 +2021,16 @@ footer {
 /* Sección de tarjetas de libros */
 .libros-section {
     display: flex;
-    justify-content: center; /* Centramos las tarjetas */
-    flex-wrap: wrap; /* Permitimos que las tarjetas se ajusten en varias filas */
-    gap: 20px; /* Espacio entre las tarjetas */
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 20px; 
     margin-top: 40px;
-    width: 100%; /* Aseguramos que el contenedor ocupe todo el ancho */
+    width: 100%; 
 }
 
 /* Tarjeta individual */
 .card {
-    width: 200px; /* Ajustamos el ancho fijo */
+    width: 200px; 
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -2044,8 +2044,8 @@ footer {
 /* Imagen en la tarjeta */
 .card-img-top {
     width: 100%;
-    height: 300px; /* Establecemos una altura fija */
-    object-fit: cover; /* Aseguramos que la imagen cubra sin distorsionarse */
+    height: 300px; 
+    object-fit: cover; 
 }
 
 /* Contenido de la tarjeta */
@@ -2057,18 +2057,18 @@ footer {
 /* Ajustes responsivos */
 @media (min-width: 992px) {
     .card {
-        width: 200px; /* Mantén el ancho fijo en pantallas grandes */
+        width: 200px; 
     }
 }
 
 @media (max-width: 768px) {
     .card {
-        width: calc(50% - 40px); /* Dos tarjetas por fila en pantallas pequeñas */
+        width: calc(50% - 40px); 
     }
 }
 
 @media (max-width: 576px) {
     .card {
-        width: calc(100% - 40px); /* Una tarjeta por fila en pantallas muy pequeñas */
+        width: calc(100% - 40px); 
     }
 }

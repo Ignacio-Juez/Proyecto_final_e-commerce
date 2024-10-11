@@ -50,7 +50,7 @@ def agregar_libro(request):
     if request.method == 'POST':
         libro_form = LibroForm(request.POST)
 
-        # Imprimir los datos del formulario
+        
         print("Datos del formulario:", request.POST)
 
         if libro_form.is_valid():
@@ -61,9 +61,9 @@ def agregar_libro(request):
                 print(f"Error al guardar el libro: {e}")
                 libro_form.add_error(None, "Error al guardar el libro.")
         else:
-            print("Errores de validación:", libro_form.errors)  # Esta línea ya estaba en tu código
+            print("Errores de validación:", libro_form.errors)  
 
-        # Verificar el estado del formulario después de intentar guardar
+        
         if not libro_form.is_valid():
             print("Errores de validación después de intentar guardar:", libro_form.errors)
 
@@ -126,13 +126,13 @@ def detalles_libro(request, libro_id):
 def obtener_carrito(request):
     carrito_data = request.session.get('carrito', None)
     if carrito_data is None:
-        return Carrito()  # Devuelve un nuevo carrito vacío si no hay datos en la sesión
+        return Carrito()  
     return Carrito(carrito_data) 
 
 
 
 def guardar_carrito(request, carrito):
-    # Serializa el carrito y lo guarda en la sesión
+    
     request.session['carrito'] = carrito.serializar()
     request.session.modified = True
 
@@ -140,7 +140,7 @@ def agregar_al_carrito(request, libro_id):
     libro = get_object_or_404(Libro, id=libro_id)
     carrito = obtener_carrito(request)
     
-    #print(f"Stock disponible para {libro.titulo}: {libro.stock}")
+    
     
     try:
         if libro.stock > 0:

@@ -28,11 +28,11 @@ class LibroForm(forms.ModelForm):
         autor_apellido = self.cleaned_data['autor_apellido']
         editorial_nombre = self.cleaned_data['editorial_nombre']
 
-        # Crear el autor
+        
         autor = Autor(nombre=autor_nombre, apellido=autor_apellido)
         autor.save()
 
-        # Crear la editorial
+        
         editorial = Editorial(nombre=editorial_nombre)
         editorial.save()
 
