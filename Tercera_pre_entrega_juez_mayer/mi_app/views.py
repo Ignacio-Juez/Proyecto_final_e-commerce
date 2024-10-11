@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LibroForm, AutorForm, EditorialForm
-from .models import Libro, Autor, Editorial
+from .models import Libro, Autor, Editorial, Carrito
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib import messages
-from django.shortcuts import get_object_or_404
+
 
 def index(request):
     is_employee = request.user.groups.filter(name='empleados').exists() if request.user.is_authenticated else False
@@ -49,29 +49,31 @@ def is_employee(user):
 def agregar_libro(request):
     if request.method == 'POST':
         libro_form = LibroForm(request.POST)
-        autor_form = AutorForm(request.POST)
-        editorial_form = EditorialForm(request.POST)
 
-        if libro_form.is_valid() and autor_form.is_valid() and editorial_form.is_valid():
-            autor = autor_form.save()
-            editorial = editorial_form.save()
+        # Imprimir los datos del formulario
+        print("Datos del formulario:", request.POST)
 
-            libro = libro_form.save(commit=False)
-            libro.autor = autor
-            libro.editorial = editorial
-            libro.save()
+        if libro_form.is_valid():
+            try:
+                libro_form.save()
+                return redirect('index')
+            except Exception as e:
+                print(f"Error al guardar el libro: {e}")
+                libro_form.add_error(None, "Error al guardar el libro.")
+        else:
+            print("Errores de validación:", libro_form.errors)  # Esta línea ya estaba en tu código
 
-            return redirect('index')
+        # Verificar el estado del formulario después de intentar guardar
+        if not libro_form.is_valid():
+            print("Errores de validación después de intentar guardar:", libro_form.errors)
+
     else:
         libro_form = LibroForm()
-        autor_form = AutorForm()
-        editorial_form = EditorialForm()
 
     return render(request, 'agregar_libro.html', {
         'libro_form': libro_form,
-        'autor_form': autor_form,
-        'editorial_form': editorial_form
     })
+
 
 @login_required
 @user_passes_test(is_employee)
@@ -119,6 +121,59 @@ def buscar_libro(request):
 
 def detalles_libro(request, libro_id):
     libro = get_object_or_404(Libro, id=libro_id)
-    
     return render(request, 'detalles_libro.html', {'libro': libro})
 
+def obtener_carrito(request):
+    carrito_data = request.session.get('carrito', None)
+    if carrito_data is None:
+        return Carrito()  # Devuelve un nuevo carrito vacío si no hay datos en la sesión
+    return Carrito(carrito_data) 
+
+
+
+def guardar_carrito(request, carrito):
+    # Serializa el carrito y lo guarda en la sesión
+    request.session['carrito'] = carrito.serializar()
+    request.session.modified = True
+
+def agregar_al_carrito(request, libro_id):
+    libro = get_object_or_404(Libro, id=libro_id)
+    carrito = obtener_carrito(request)
+    
+    #print(f"Stock disponible para {libro.titulo}: {libro.stock}")
+    
+    try:
+        if libro.stock > 0:
+            carrito.agregar_articulos(libro, 1)
+            guardar_carrito(request, carrito)
+            messages.success(request, f"{libro.titulo} agregado al carrito.")
+        else:
+            messages.error(request, 'No hay stock disponible de este libro.')
+    except ValueError as e:
+        messages.error(request, str(e))
+        
+    return redirect('detalles_libro', libro_id=libro_id)
+
+def ver_carrito(request):
+    carrito = obtener_carrito(request)
+    total = carrito.calcular_total()  
+    return render(request, 'carrito.html', {'carrito': carrito.articulos, 'total': total})
+
+def vaciar_carrito(request):
+    carrito_data = request.session.get('carrito', {})
+    
+    if carrito_data:
+        for item in carrito_data.get('articulos', []):
+            libro_id = item['libro_id']
+            cantidad = item['cantidad']
+            
+            
+            libro = get_object_or_404(Libro, id=libro_id)
+            libro.incrementar_stock(cantidad)
+        
+        del request.session['carrito']
+        messages.success(request, "El carrito ha sido vaciado y el stock ha sido restaurado.")
+    else:
+        messages.warning(request, "El carrito ya está vacío.")
+    
+    return redirect('carrito')

@@ -8,7 +8,7 @@ class LibroForm(forms.ModelForm):
     
     class Meta:
         model = Libro
-        fields = ['titulo', 'isbn', 'fecha_publicacion', 'stock', 'imagen_url', 'autor_nombre', 'autor_apellido', 'editorial_nombre', 'precio']
+        fields = ['titulo', 'isbn', 'fecha_publicacion', 'stock', 'imagen_url', 'precio', 'autor_nombre', 'autor_apellido', 'editorial_nombre']
         widgets = {
             'fecha_publicacion': forms.DateInput(attrs={'type': 'date'}),
             'precio': forms.NumberInput(attrs={'step': '0.01'}),
@@ -28,17 +28,22 @@ class LibroForm(forms.ModelForm):
         autor_apellido = self.cleaned_data['autor_apellido']
         editorial_nombre = self.cleaned_data['editorial_nombre']
 
-        
-        autor, created = Autor.objects.get_or_create(nombre=autor_nombre, apellido=autor_apellido)
-        libro.autor = autor
+        # Crear el autor
+        autor = Autor(nombre=autor_nombre, apellido=autor_apellido)
+        autor.save()
 
-        
-        editorial, created = Editorial.objects.get_or_create(nombre=editorial_nombre)
+        # Crear la editorial
+        editorial = Editorial(nombre=editorial_nombre)
+        editorial.save()
+
+        libro.autor = autor
         libro.editorial = editorial
 
         if commit:
             libro.save()
         return libro
+
+
 
     
 class AutorForm(forms.ModelForm):

@@ -1,11 +1,10 @@
 {% extends 'index.html' %}
 {% load static %}
 
-
 {% block title %}Agregar Libro{% endblock %}
 
 {% block content %}
-<section class="inner_page_section" style="padding-top: 200px;">
+<section class="inner_page_section" style="padding-top: 600px;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -37,20 +36,21 @@
                         <legend>Datos del Libro</legend>
                         {{ libro_form.titulo.label_tag }}: {{ libro_form.titulo }} <br>
                         {{ libro_form.isbn.label_tag }}: {{ libro_form.isbn }} <br>
-                        {{libro_form.stock.label_tag}}: {{libro_form.stock}} <br>
+                        {{ libro_form.stock.label_tag }}: {{ libro_form.stock }} <br>
                         {{ libro_form.fecha_publicacion.label_tag }}: {{ libro_form.fecha_publicacion }} <br>
                         {{ libro_form.precio.label_tag }}: {{ libro_form.precio }} <br>
+                        {{ libro_form.imagen_url.label_tag }}: {{ libro_form.imagen_url }} <br>
                     </fieldset>
 
                     <fieldset>
                         <legend>Datos del Autor</legend>
-                        {{ autor_form.nombre.label_tag }}: {{ autor_form.nombre }} <br>
-                        {{ autor_form.apellido.label_tag }}: {{ autor_form.apellido }} <br>
+                        {{ libro_form.autor_nombre.label_tag }}: {{ libro_form.autor_nombre }} <br>
+                        {{ libro_form.autor_apellido.label_tag }}: {{ libro_form.autor_apellido }} <br>
                     </fieldset>
-
+                    
                     <fieldset>
                         <legend>Datos de la Editorial</legend>
-                        {{ editorial_form.nombre.label_tag }}: {{ editorial_form.nombre }} <br>
+                        {{ libro_form.editorial_nombre.label_tag }}: {{ libro_form.editorial_nombre }} <br>
                     </fieldset>
 
                     <button type="submit" class="btn btn-success">Guardar</button>

@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Carrito{% endblock %}
+
+{% block content %}
+<section class="inner_page_section" style="padding-top: 500px;"></section>
+{% if carrito %}
+    <ul>
+        {% for item in carrito %}
+            <li>{{ item.libro.titulo }} - Cantidad: {{ item.cantidad }} - Precio: {{ item.precio }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total: {{ total }}</p>
+{% else %}
+    <p>El carrito está vacío.</p>
+{% endif %}
+<a href="{% url 'pagina_vacia' %}" class="btn btn-primary">Pagar</a>
+<form action="{% url 'vaciar_carrito' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Vaciar Carrito</button>
+</form>
+<style>
+    footer {
+        margin-top: 760px; 
+    }
+</style>
+{% endblock %}

@@ -3,7 +3,7 @@
 
 {% block title %}Buscar Libro{% endblock %}
 {% block content %}
-<section class="inner_page_section" style="padding-top: 700px;">
+<section class="inner_page_section" style="padding-top: 1200px;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -19,12 +19,13 @@
                 {% if resultados %}
                     <h3>{% if busqueda_realizada %}Resultados de la búsqueda:{% else %}Todos los libros disponibles:{% endif %}</h3>
                     
-                    <!-- Tarjetas de los libros -->
-                    <section class="libros-section">
+                    <!-- Tarjetas de los libros con clases específicas según la cantidad de libros -->
+                    <section class="libros-section 
+                        {% if resultados|length == 1 %}vista-individual{% elif resultados|length == 2 %}vista-dos{% else %}vista-tres{% endif %}">
                         <div class="row">
                             {% for libro in resultados %}
-                                <div class="col-md-4">
-                                    <div class="card" style="width: 18rem;">
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="card">
                                         {% if libro.imagen_url %}
                                             <img src="{{ libro.imagen_url }}" class="card-img-top" alt="{{ libro.titulo }}">
                                         {% else %}

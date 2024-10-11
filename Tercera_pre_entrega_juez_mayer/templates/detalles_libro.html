@@ -1,8 +1,8 @@
-{% extends 'index.html' %}
+{% extends 'index.html' %} 
 {% load static %}
 {% block title %}Detalles del Libro{% endblock %}
 {% block content %}
-<section class="inner_page_section" style="padding-top: 600px;">
+<section class="inner_page_section" style="padding-top: 680px;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -20,6 +20,17 @@
                         <p class="card-text"><strong>Stock Disponible:</strong> {{ libro.stock }}</p>
                         <p class="card-text"><strong>Autor:</strong> {{ libro.autor.nombre }} {{ libro.autor.apellido }}</p>
                         <p class="card-text"><strong>Editorial:</strong> {{ libro.editorial.nombre }}</p>
+                        
+                        {% if libro.stock > 0 %}
+                            <!-- Formulario para agregar al carrito -->
+                            <form method="POST" action="{% url 'agregar_al_carrito' libro.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success">Agregar al Carrito</button>
+                            </form>
+                        {% else %}
+                            <p class="text-danger">No hay stock disponible</p>
+                        {% endif %}
+                        
                         <a href="{% url 'buscar_libro' %}" class="btn btn-secondary">Volver a la Búsqueda</a>
                     </div>
                 </div>
@@ -27,6 +38,7 @@
         </div>
     </div>
 </section>
+
 <style>
     footer {
         margin-top: 400px; 

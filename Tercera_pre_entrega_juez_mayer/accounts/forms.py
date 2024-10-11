@@ -11,7 +11,7 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
-        help_texts = None
+        help_texts = {k: "" for k in fields}
 
 
 class UserProfileForm(forms.ModelForm):

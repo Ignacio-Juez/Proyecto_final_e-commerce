@@ -1,6 +1,7 @@
 # Create your models here.
-
+from decimal import Decimal
 from django.db import models
+from django.shortcuts import get_object_or_404
 
 class Libro(models.Model):
     titulo = models.CharField(max_length=200)
@@ -39,3 +40,52 @@ class Editorial(models.Model):
     def __str__(self):
         return self.nombre
     
+class Carrito:
+    def __init__(self, carrito_data=None):
+        self.articulos = []
+        if carrito_data:
+            # Carga los artículos desde el carrito_data si existe
+            for item in carrito_data.get('articulos', []):
+                libro = get_object_or_404(Libro, id=item['libro_id'])
+                self.articulos.append({
+                    "libro": libro, 
+                    "precio": item['precio'],
+                    "cantidad": item['cantidad']
+                })
+
+    def agregar_articulos(self, libro, cantidad):
+        if libro.stock >= cantidad:
+            self.articulos.append({
+                "libro": libro, 
+                "precio": float(libro.precio),  # Convertir a float aquí
+                "cantidad": cantidad
+            })
+        
+            libro.stock -= cantidad
+            libro.save()
+        else:
+            raise ValueError(f"No hay suficiente stock para {libro.titulo}")
+
+    def remover_articulo(self, libro):
+        for item in self.articulos:
+            if item["libro"] == libro:
+                self.articulos.remove(item)
+                break
+
+    def calcular_total(self):
+        total = 0.00
+        for item in self.articulos:
+            total += item["precio"] * item["cantidad"]
+        return total
+
+    def serializar(self):
+        # Convierte el carrito a un formato serializable
+        return {
+            "articulos": [
+                {
+                    "libro_id": item["libro"].id,  # Guarda solo el ID del libro
+                    "precio": item["precio"],       # Asegúrate de que el precio sea un float
+                    "cantidad": item["cantidad"],
+                } for item in self.articulos
+            ]
+        }
